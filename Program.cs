@@ -12,8 +12,9 @@ namespace Collaboration
 		{
 			ourClass test = new ourClass();
 			test.buildSpyStuff();
-			Console.WriteLine(ourClass.Encrypt("Goat"));
-
+			Console.WriteLine("unencrypted sent was  = Goat");
+			Console.WriteLine("encrypted response: " + ourClass.Encrypt("Goat") );
+			Console.ReadLine();
 		}
 	}
 }

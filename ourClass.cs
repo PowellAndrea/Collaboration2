@@ -21,29 +21,36 @@ namespace Collaboration
 		/* The encryption/decryption methods
 		 * must use some form of sum of all ASCII values
 		 * as a (partial) basis/start point for encrypting the string.
-		 */ 
+		 */
 
 		public static string Encrypt(String unencrypted)
 		{
+			char[] chars = unencrypted.ToCharArray();
+			int count = 0;
 			byte[] asciiValues = Encoding.ASCII.GetBytes(unencrypted);
+			byte[] byteMe = new byte[100];
 
-			string temp = asciiValues.ToString();
+			string stringOutput = asciiValues.ToString();
 
-			Console.WriteLine(temp);
-			Console.ReadLine();
+			// copy first ASCII byte & append it to the last byte of the temp string
+			foreach (byte value in asciiValues)
+			{
+				byteMe.Append(value);
+				count++;
+			}
 
-			return temp;
-		}
+			stringOutput = byteMe.ToString();
 
-	
-		public static string Decrypt( String encrypted)
-		{
-			string decrypted = string.Empty;
-			byte[] decryptedBytes = Encoding.ASCII.GetBytes(encrypted);	
-
+			var m = Encoding.ASCII.GetString(byteMe);
 
 
-			return decrypted;
+
+			// Add length of string to the last byte in the array
+
+
+
+
+			return stringOutput;
 		}
 	}
 }
