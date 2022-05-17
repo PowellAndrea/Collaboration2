@@ -1,0 +1,8 @@
+E:\_SourceCode\Collaboration\obj\Debug\Collaboration.csproj.AssemblyReference.cache
+E:\_SourceCode\Collaboration\obj\Debug\Collaboration.csproj.SuggestedBindingRedirects.cache
+E:\_SourceCode\Collaboration\obj\Debug\Collaboration.csproj.CoreCompileInputs.cache
+E:\_SourceCode\Collaboration\bin\Debug\Collaboration.exe.config
+E:\_SourceCode\Collaboration\bin\Debug\Collaboration.exe
+E:\_SourceCode\Collaboration\bin\Debug\Collaboration.pdb
+E:\_SourceCode\Collaboration\obj\Debug\Collaboration.exe
+E:\_SourceCode\Collaboration\obj\Debug\Collaboration.pdb
