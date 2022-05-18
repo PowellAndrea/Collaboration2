@@ -12,64 +12,71 @@ using System.Threading.Tasks;
 
 namespace Collaboration
 {
-	internal class ourClass
-	{
+    internal class ourClass
+    {
 
-		public Encoding asciiEncoding = Encoding.ASCII;
+        public Encoding asciiEncoding = Encoding.ASCII;
 
-		public static string Decrypt(String encrypted)
-		{
-			string OutputString = string.Empty;
-			
-			// Split the encrypted string into sub-strings for each "number word"
-			string[] Values = encrypted.Split('*');
-			byte[] byteArray;
+        public static string Decrypt(String encrypted)
+        {
+            string OutputString = string.Empty;
 
-			var sum = int.Parse(Values.Last()); // grab the last value - this is the sum/key
+            // Split the encrypted string into sub-strings for each "number word"
+            string[] Values = encrypted.Split('*');
+            //byte[] byteArray;
 
-			for (int index=0; index<Values.Length-1; index++)
-			{
+            var sum = int.Parse(Values.Last()); // grab the last value - this is the sum/key
+
+            for (int index = 0; index < Values.Length - 1; index++)
+            {
 				//char[] Values = Values[index].ToCharArray();
+					char[] charArray = encrypted.ToCharArray();   // Convert unencrypted string to a character array
+
+				byte[] byteArray = new byte[charArray.Length + 5];  // Create a byteArray the (length of the character array + 5)
+				//byteArray = Encoding.ASCII.GetBytes(charArray);
+				byteArray = new byte[Values.Length - 1];
+
+				// gagh - thought I had it, but I lost it ...
 
 				if (Values[index] != Values.Last())
-				{
-					string x = (int.Parse(Values[index]) / sum).ToString();
-					var i = (int.Parse(Values[index]) / sum);
+                {
+                    string x = (int.Parse(Values[index]) / sum).ToString();
+                    char i = Convert.ToChar(int.Parse(Values[index]) / sum);
 
-					OutputString += i + " ";
+                    OutputString += i;
 
-				}
-				//Console.WriteLine(OutputString); // FIX:  Currently returning the a Ascii code for the first int;
-			}
-			return OutputString;
-		}
+                }
+                Console.WriteLine(OutputString); // FIX:  Currently returning the a Ascii code for the first int;
+            }
+            return OutputString;
+        }
 
 
 
-		public static string Encrypt(String unencrypted)
-		{
-			char[] charArray = unencrypted.ToCharArray();   // Convert unencrypted string to a character array
+        public static string Encrypt(String unencrypted)
+        {
+            char[] charArray = unencrypted.ToCharArray();   // Convert unencrypted string to a character array
 
-			byte[] byteArray = new byte[charArray.Length + 5];  // Create a byteArray the (length of the character array + 5)
-			byteArray = Encoding.ASCII.GetBytes(charArray);    // Convert unencrypted string to a byte array
+            byte[] byteArray = new byte[charArray.Length + 5];  // Create a byteArray the (length of the character array + 5)
+            byteArray = Encoding.ASCII.GetBytes(charArray);    // Convert unencrypted string to a byte array
 
-			string OutputString = null;
-			int sum = 0;
-			//List<int> Values = new List<int>();
+            string OutputString = null;
+            int sum = 0;
+            //List<int> Values = new List<int>();
 
-			foreach (byte b in byteArray) // each byte = the ascii code for each character in the unencoded string
-			{ 
-				sum = sum + (Int32)(b); // sum of the number value for each ascii code
-			}
+            foreach (byte b in byteArray) // each byte = the ascii code for each character in the unencoded string
+            {
+                sum = sum + (Int32)(b); // sum of the number value for each ascii code
+            }
 
-			foreach (byte b in byteArray)
-			{ 
-				OutputString += (b * sum).ToString() + '*';
-			}
+            foreach (byte b in byteArray)
+            {
+                OutputString += (b * sum).ToString() + '*';
+            }
 
-			OutputString += sum.ToString() ;
+            OutputString += sum.ToString();
 
-			return OutputString;
-		}
-	}
+            return OutputString;
+        }
+    }
 }
