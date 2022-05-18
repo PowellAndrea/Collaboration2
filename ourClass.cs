@@ -21,32 +21,25 @@ namespace Collaboration
         {
             string OutputString = string.Empty;
 
-            // Split the encrypted string into sub-strings for each "number word"
-            string[] Values = encrypted.Split('*');
-            //byte[] byteArray;
+            string[] Values = encrypted.Split('*');   // Split the encrypted string into sub-strings for each "number word"
 
-            var sum = int.Parse(Values.Last()); // grab the last value - this is the sum/key
+				var sum = int.Parse(Values.Last()); // grab the last value - this is the sum/key
 
             for (int index = 0; index < Values.Length - 1; index++)
             {
-				//char[] Values = Values[index].ToCharArray();
 					char[] charArray = encrypted.ToCharArray();   // Convert unencrypted string to a character array
 
-				byte[] byteArray = new byte[charArray.Length + 5];  // Create a byteArray the (length of the character array + 5)
-				//byteArray = Encoding.ASCII.GetBytes(charArray);
-				byteArray = new byte[Values.Length - 1];
+					byte[] byteArray = new byte[charArray.Length + 5];  // Create a byteArray the (length of the character array + 5)
+					byteArray = new byte[Values.Length - 1];
 
-				// gagh - thought I had it, but I lost it ...
 
-				if (Values[index] != Values.Last())
-                {
-                    string x = (int.Parse(Values[index]) / sum).ToString();
-                    char i = Convert.ToChar(int.Parse(Values[index]) / sum);
+					if (Values[index] != Values.Last())
+					 {
+							string x = (int.Parse(Values[index]) / sum).ToString();
+							char i = Convert.ToChar(int.Parse(Values[index]) / sum);
 
-                    OutputString += i;
-
-                }
-                Console.WriteLine(OutputString); // FIX:  Currently returning the a Ascii code for the first int;
+							OutputString += i;
+						}
             }
             return OutputString;
         }
