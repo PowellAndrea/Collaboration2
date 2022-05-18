@@ -35,11 +35,8 @@ namespace Collaboration
 				{
 					string x = (int.Parse(Values[index]) / sum).ToString();
 					var i = (int.Parse(Values[index]) / sum);
-					var c = 
 
-					byte b =Encoding.ASCII.GetBytes(i);
-
-					Console.WriteLine(b);
+					OutputString += i + " ";
 
 				}
 				//Console.WriteLine(OutputString); // FIX:  Currently returning the a Ascii code for the first int;
